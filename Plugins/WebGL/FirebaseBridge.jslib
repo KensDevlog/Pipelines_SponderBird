@@ -8,7 +8,7 @@ var FirebaseBridgeLib = {
             window.__fbAuth.uid = data.uid;
             window.__fbAuth.idToken = data.idToken;
             window.__fbAuth.displayName = data.displayName || "Player";
-            dinwo.__fbAuth.projectId = data.projectId || "";
+            window.__fbAuth.projectId = data.projectId || "";
 
             var payload = JSON.stringify(window.__fbAuth);
             SendMessage("FirebaseManager", "OnAuthReceived", payload);
@@ -34,7 +34,6 @@ var FirebaseBridgeLib = {
             var payload = JSON.stringify(window._fbAuth);
             SendMessage("FirebaseManager", "OnAuthReceived", payload);
         }
-
     },
 
     SubmitScoreToFirestore: function (jsonBodyPtr) {
