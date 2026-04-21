@@ -11,7 +11,7 @@ var FirebaseBridgeLib = {
             window.__fbAuth.projectId = data.projectId || "";
 
             var payload = JSON.stringify(window.__fbAuth);
-            SendMessage("FirebaseManager", "OnAuthReceived", payload);
+            SendMessage("GameManager", "OnAuthReceived", payload);
 
             if (window.parent && window.parent !== window) {
                 window.parent.postMessage({ type: "firebase-auth-ack" }, "*");
@@ -32,7 +32,7 @@ var FirebaseBridgeLib = {
 
         if (window.__fbAuth && window.__fbAuth.uid && window.__fbAuth.idToken) {
             var payload = JSON.stringify(window._fbAuth);
-            SendMessage("FirebaseManager", "OnAuthReceived", payload);
+            SendMessage("GameManager", "OnAuthReceived", payload);
         }
     },
 
@@ -46,7 +46,7 @@ var FirebaseBridgeLib = {
             return;
         }
 
-        var baseUrl = "https://firestore.googleapis.com/v1/projects" + auth.projectId + "/databases/(default)/documents";
+        var baseUrl = "https://firestore.googleapis.com/v1/projects/" + auth.projectId + "/databases/(default)/documents";
 
         var headers = {
             "Content-Type": "application/json",
@@ -70,7 +70,7 @@ var FirebaseBridgeLib = {
         })
             .then(function (res) { return res.json(); })
             .then(function (data) { console.log("Score saved: ", data.name); })
-            .catch(function (err) { console.error("Score POST failed", e); });
+            .catch(function (err) { console.error("Score POST failed", err); });
 
         var useDocUrl = baseUrl + "/users/" + auth.uid;
 

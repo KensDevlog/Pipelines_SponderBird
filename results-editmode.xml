@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="13" result="Failed(Child)" total="13" passed="12" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:34Z" duration="0.0593483">
+  <test-suite type="TestSuite" id="1000" name="SponderBird" fullname="SponderBird" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:34Z" duration="0.059348" total="13" passed="12" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1015" name="EditModeTests.dll" fullname="C:/Users/Public/Repos/SponderBird/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:34Z" duration="0.051941" total="13" passed="12" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31908" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1001" name="FirebaseManagerTests" fullname="FirebaseManagerTests" classname="FirebaseManagerTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:34Z" duration="0.050380" total="13" passed="12" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1003" name="InitialDisplayName_IsPlayer" fullname="FirebaseManagerTests.InitialDisplayName_IsPlayer" methodname="InitialDisplayName_IsPlayer" classname="FirebaseManagerTests" runstate="Runnable" seed="1277646655" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.015431" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1005" name="InitialProjectId_IsEmpty" fullname="FirebaseManagerTests.InitialProjectId_IsEmpty" methodname="InitialProjectId_IsEmpty" classname="FirebaseManagerTests" runstate="Runnable" seed="631325430" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.000385" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="InitialState_IsNotAuthenticated" fullname="FirebaseManagerTests.InitialState_IsNotAuthenticated" methodname="InitialState_IsNotAuthenticated" classname="FirebaseManagerTests" runstate="Runnable" seed="555833593" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.000504" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="InitialUserId_IsEmpty" fullname="FirebaseManagerTests.InitialUserId_IsEmpty" methodname="InitialUserId_IsEmpty" classname="FirebaseManagerTests" runstate="Runnable" seed="1646655782" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.000267" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="OnAuthReceived_CalledTwice_OverwritesFirstAuth" fullname="FirebaseManagerTests.OnAuthReceived_CalledTwice_OverwritesFirstAuth" methodname="OnAuthReceived_CalledTwice_OverwritesFirstAuth" classname="FirebaseManagerTests" runstate="Runnable" seed="134251440" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.003620" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Auth Received: {"uid":"1234","idToken":"token_1234","displayName":"Sponder","projectId":"beetle-ball"}
+User Authenticated as Sponder, UID: 1234
+Auth Received: {"uid":"4321","idToken":"token_4321","displayName":"Spencer","projectId":"bug-sphere"}
+User Authenticated as Spencer, UID: 4321
+]]></output>
+        </test-case>
+        <test-case id="1010" name="OnAuthReceived_EmptyToken_IsNotAuthenticated" fullname="FirebaseManagerTests.OnAuthReceived_EmptyToken_IsNotAuthenticated" methodname="OnAuthReceived_EmptyToken_IsNotAuthenticated" classname="FirebaseManagerTests" runstate="Runnable" seed="887899931" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.001321" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Auth Received: {"uid":"1234","idToken":"","displayName":"X","projectId":"project"}
+User Authenticated as X, UID: 1234
+]]></output>
+        </test-case>
+        <test-case id="1007" name="OnAuthReceived_SetsDisplayName" fullname="FirebaseManagerTests.OnAuthReceived_SetsDisplayName" methodname="OnAuthReceived_SetsDisplayName" classname="FirebaseManagerTests" runstate="Runnable" seed="754522555" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.001153" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Auth Received: {"uid":"1234","idToken":"token_1234","displayName":"Sponder","projectId":"beetle-ball"}
+User Authenticated as Sponder, UID: 1234
+]]></output>
+        </test-case>
+        <test-case id="1008" name="OnAuthReceived_SetsIdToken" fullname="FirebaseManagerTests.OnAuthReceived_SetsIdToken" methodname="OnAuthReceived_SetsIdToken" classname="FirebaseManagerTests" runstate="Runnable" seed="1935685857" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.001151" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Auth Received: {"uid":"1234","idToken":"token_1234","displayName":"Sponder","projectId":"beetle-ball"}
+User Authenticated as Sponder, UID: 1234
+]]></output>
+        </test-case>
+        <test-case id="1009" name="OnAuthReceived_SetsProjectId" fullname="FirebaseManagerTests.OnAuthReceived_SetsProjectId" methodname="OnAuthReceived_SetsProjectId" classname="FirebaseManagerTests" runstate="Runnable" seed="722021196" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.001136" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Auth Received: {"uid":"1234","idToken":"token_1234","displayName":"Sponder","projectId":"beetle-ball"}
+User Authenticated as Sponder, UID: 1234
+]]></output>
+        </test-case>
+        <test-case id="1006" name="OnAuthReceived_ValidPayload_SetsAuthenticated" fullname="FirebaseManagerTests.OnAuthReceived_ValidPayload_SetsAuthenticated" methodname="OnAuthReceived_ValidPayload_SetsAuthenticated" classname="FirebaseManagerTests" runstate="Runnable" seed="1615447241" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.001147" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Auth Received: {"uid":"1234","idToken":"token_1234","displayName":"Sponder","projectId":"beetle-ball"}
+User Authenticated as Sponder, UID: 1234
+]]></output>
+        </test-case>
+        <test-case id="1014" name="Singleton_IsSetAfterAwake" fullname="FirebaseManagerTests.Singleton_IsSetAfterAwake" methodname="Singleton_IsSetAfterAwake" classname="FirebaseManagerTests" runstate="Runnable" seed="1867866892" result="Failed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:33Z" duration="0.005887" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  Expected: <TestFirebaseManager (FirebaseManager)>
+  But was:  null
+]]></message>
+            <stack-trace><![CDATA[at FirebaseManagerTests.Singleton_IsSetAfterAwake () [0x00000] in C:\Users\Public\Repos\SponderBird\Assets\Tests\EditMode\FirebaseManagerTests.cs:131
+]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1013" name="SubmitScore_WhenAuthenticated_DoesNotThrow" fullname="FirebaseManagerTests.SubmitScore_WhenAuthenticated_DoesNotThrow" methodname="SubmitScore_WhenAuthenticated_DoesNotThrow" classname="FirebaseManagerTests" runstate="Runnable" seed="2080072928" result="Passed" start-time="2026-04-08 23:03:33Z" end-time="2026-04-08 23:03:34Z" duration="0.002810" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Auth Received: {"uid":"1234","idToken":"token_1234","displayName":"Sponder","projectId":"beetle-ball"}
+User Authenticated as Sponder, UID: 1234
+SubmitScoreToFirestore Stub
+]]></output>
+        </test-case>
+        <test-case id="1012" name="SubmitScore_WhenNotAuthenticated_DoesNotThrow" fullname="FirebaseManagerTests.SubmitScore_WhenNotAuthenticated_DoesNotThrow" methodname="SubmitScore_WhenNotAuthenticated_DoesNotThrow" classname="FirebaseManagerTests" runstate="Runnable" seed="1986876706" result="Passed" start-time="2026-04-08 23:03:34Z" end-time="2026-04-08 23:03:34Z" duration="0.000880" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Not authenticated. Score not submitted
+Saving results to: C:/Users/pg29ken/AppData/LocalLow/DefaultCompany/SponderBird\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
