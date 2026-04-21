@@ -52,7 +52,7 @@
         var baseUrl = "https://firestore.googleapis.com/v1/projects/" + auth.projectId + "/databases/(default)/documents";
         var headers = {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + auth.idToken  // ✏️ fixed missing space in SubmitScore too
+            "Authorization": "Bearer " + auth.idToken
         };
 
         var sessionDoc = {
