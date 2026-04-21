@@ -34,6 +34,7 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore = 0;
         pipesPassed = 0;
+        sessionStartTime = Time.time;
         UpdateScoreDisplay();
     }
 
