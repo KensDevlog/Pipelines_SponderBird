@@ -1,8 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
+
 
 public class GameManager : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern void JS_RecordSessionStart(string playerId);
+
+    [DllImport("__Internal")]
+    private static extern void JS_RecordSessionEnd(string playerId, float durationSeconds);
+
+    private float _startTime;
+    private string _playerId;
+    
     public static GameManager Instance { get; private set; }
 
     public enum GameState { Idle, Playing, GameOver }
@@ -34,6 +45,22 @@ public class GameManager : MonoBehaviour
         if (pipeSpawner == null) Debug.LogError("[GameManager] PipeSpawner reference not set!");
 
         birdStartPosition = bird != null ? bird.transform.position : new Vector3(-3, 0, 0);
+        
+        _playerId = SystemInfo.deviceUniqueIdentifier; // or your own auth ID
+        _startTime = Time.realtimeSinceStartup;
+        
+#if !UNITY_EDITOR
+        JS_RecordSessionStart(_playerId);
+#endif
+    }
+
+    void OnApplicationQuit()
+    {
+        float duration = Time.realtimeSinceStartup - _startTime;
+
+#if !UNITY_EDITOR
+        JS_RecordSessionEnd(_playerId, duration);
+#endif
 
         ShowStartScreen();
     }

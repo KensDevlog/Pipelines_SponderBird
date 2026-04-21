@@ -1,4 +1,4 @@
-var FirebaseBridgeLib = {
+﻿var FirebaseBridgeLib = {
     InitFirebaseBridge: function () {
         if (!window.__fbAuth) {
             window.__fbAuth = { uid: null, idToken: null, displayName: null, projectId: null }
@@ -31,9 +31,47 @@ var FirebaseBridgeLib = {
         }
 
         if (window.__fbAuth && window.__fbAuth.uid && window.__fbAuth.idToken) {
-            var payload = JSON.stringify(window._fbAuth);
+            var payload = JSON.stringify(window.__fbAuth);
             SendMessage("GameManager", "OnAuthReceived", payload);
         }
+    },
+
+    JS_RecordSessionStart: function (playerIdPtr) {
+        var startTime = new Date().toISOString();
+        sessionStorage.setItem("session_start", startTime);
+    },
+
+    JS_RecordSessionEnd: function (playerIdPtr, duration) {
+        var auth = window.__fbAuth;
+        if (!auth || !auth.idToken || !auth.projectId) {
+            console.warn("No auth, session not submitted");
+            return;
+        }
+
+        var startTime = sessionStorage.getItem("session_start");
+        var baseUrl = "https://firestore.googleapis.com/v1/projects/" + auth.projectId + "/databases/(default)/documents";
+        var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + auth.idToken  // ✏️ fixed missing space in SubmitScore too
+        };
+
+        var sessionDoc = {
+            fields: {
+                userId: { stringValue: auth.uid },
+                startTime: { timestampValue: startTime || new Date().toISOString() },
+                endTime: { timestampValue: new Date().toISOString() },
+                duration: { integerValue: String(Math.round(duration)) }
+            }
+        };
+
+        fetch(baseUrl + "/sessions", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(sessionDoc)
+        })
+            .then(function (res) { return res.json(); })
+            .then(function (data) { console.log("Session saved:", data.name); })
+            .catch(function (err) { console.error("Session POST failed:", err); });
     },
 
     SubmitScoreToFirestore: function (jsonBodyPtr) {
@@ -50,7 +88,7 @@ var FirebaseBridgeLib = {
 
         var headers = {
             "Content-Type": "application/json",
-            "Authorization": "Bearer" + auth.idToken
+            "Authorization": "Bearer " + auth.idToken
         };
 
         var scoreDoc = {
@@ -72,9 +110,9 @@ var FirebaseBridgeLib = {
             .then(function (data) { console.log("Score saved: ", data.name); })
             .catch(function (err) { console.error("Score POST failed", err); });
 
-        var useDocUrl = baseUrl + "/users/" + auth.uid;
+        var userDocUrl = baseUrl + "/users/" + auth.uid;
 
-        fetch(useDocUrl, {
+        fetch(userDocUrl, {
             method: "GET",
             headers: headers,
         })
@@ -85,7 +123,7 @@ var FirebaseBridgeLib = {
 
                 if (doc.fields) {
                     if (doc.fields.highScore) currentHigh = parseInt(doc.fields.highScore.integerValue || "0");
-                    if (doc.fields.gamesPlayed) currentGames = parseItn(doc.fields.gamesPlayed.integerValue || "0");
+                    if (doc.fields.gamesPlayed) currentGames = parseInt(doc.fields.gamesPlayed.integerValue || "0");
                 }
 
                 var newHigh = Math.max(currentHigh, parsed.score);
@@ -106,8 +144,10 @@ var FirebaseBridgeLib = {
             })
             .then(function (res) { return res.json(); })
             .then(function (data) { console.log("User Profile Updated"); })
-            .catch(function (err) { console.error("User PATCH failed", e); });
+            .catch(function (err) { console.error("User PATCH failed", err); });
     }
 };
+
+
 
 mergeInto(LibraryManager.library, FirebaseBridgeLib);
