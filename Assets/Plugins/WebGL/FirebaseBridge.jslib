@@ -75,7 +75,8 @@
     },
 
     SubmitScoreToFirestore: function (jsonBodyPtr) {
-        var jsonBody = UTF8ToString(jsonBodyPtr);
+        var jsonBody = jsonBodyPtr;
+
         var parsed = JSON.parse(jsonBody);
 
         var auth = window.__fbAuth;

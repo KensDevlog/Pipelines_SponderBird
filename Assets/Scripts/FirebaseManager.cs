@@ -65,8 +65,7 @@ public class FirebaseManager : MonoBehaviour
         {
             score = score,
             pipes = pipes,
-            duration = duration,
-            displayName = DisplayName
+            duration = duration
         };
         
         string json = JsonUtility.ToJson(payload);
